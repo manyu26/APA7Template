@@ -1,0 +1,45 @@
+{
+	"name": "APA 7 LaTeX Environment",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+	
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"james-yu.latex-workshop",
+				"valentjn.vscode-ltex"
+			],
+			"settings": {
+				"latex-workshop.latex.autoBuild.run": "onSave",
+				"latex-workshop.latex.recipes": [
+					{
+						"name": "latexmk",
+						"tools": ["latexmk"]
+					}
+				],
+				"latex-workshop.latex.tools": [
+					{
+						"name": "latexmk",
+						"command": "latexmk",
+						"args": [
+							"-synctex=1",
+							"-interaction=nonstopmode",
+							"-file-line-error",
+							"-pdf",
+							"-outdir=%OUTDIR%",
+							"%DOC%"
+						]
+					}
+				],
+				"latex-workshop.view.pdf.viewer": "tab"
+			}
+		}
+	},
+
+	"postCreateCommand": "bash .devcontainer/setup.sh",
+
+	"remoteUser": "vscode"
+}
